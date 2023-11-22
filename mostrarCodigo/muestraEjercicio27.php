@@ -1,4 +1,4 @@
 <?php
-highlight_file('../codigoPHP/ejercicio25.php');
+highlight_file('../codigoPHP/ejercicio27.php');
 
 ?>
