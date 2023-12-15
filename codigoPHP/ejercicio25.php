@@ -182,67 +182,65 @@ $aOpcionesListaDesplegable = [
 if (isset($_REQUEST['enviar'])) {
 
 	//Introducimos valores en el array $aErrores si ocurre un error
-	$aErrores = [
-		//Alfabetico
-		'alfabeticoObligatorio' => validacionFormularios::comprobarAlfabetico($_REQUEST['alfabeticoObligatorio'], 1000, 1, 1), // Alfabético obligatorio
-		'alfabeticoOpcional' => validacionFormularios::comprobarAlfabetico($_REQUEST['alfabeticoOpcional']), // Alfabético opcional
+	// Validaciones para campos alfabéticos
+	$aErrores['alfabeticoObligatorio'] = validacionFormularios::comprobarAlfabetico($_REQUEST['alfabeticoObligatorio'], 1000, 1, 1); // Alfabético obligatorio
+	$aErrores['alfabeticoOpcional'] = validacionFormularios::comprobarAlfabetico($_REQUEST['alfabeticoOpcional']); // Alfabético opcional
 
-		//Alfanumerico
-		'alfanumericoObligatorio' => validacionFormularios::comprobarAlfaNumerico($_REQUEST['alfanumericoObligatorio'], 1000, 1, 1), // Alfanumérico obligatorio
-		'alfanumericoOpcional' => validacionFormularios::comprobarAlfaNumerico($_REQUEST['alfanumericoOpcional']), // Alfanumérico opcional
+	// Validaciones para campos alfanuméricos
+	$aErrores['alfanumericoObligatorio'] = validacionFormularios::comprobarAlfaNumerico($_REQUEST['alfanumericoObligatorio'], 1000, 1, 1); // Alfanumérico obligatorio
+	$aErrores['alfanumericoOpcional'] = validacionFormularios::comprobarAlfaNumerico($_REQUEST['alfanumericoOpcional']); // Alfanumérico opcional
 
-		//Numerico
-		'numericoObligatorio' => validacionFormularios::comprobarEntero($_REQUEST['numericoObligatorio'], PHP_INT_MAX, -PHP_INT_MAX, 1), // Numérico obligatorio
-		'numericoOpcional' => validacionFormularios::comprobarEntero($_REQUEST['numericoOpcional']), // Numérico opcional
+	// Validaciones para campos numéricos
+	$aErrores['numericoObligatorio'] = validacionFormularios::comprobarEntero($_REQUEST['numericoObligatorio'], PHP_INT_MAX, -PHP_INT_MAX, 1); // Numérico obligatorio
+	$aErrores['numericoOpcional'] = validacionFormularios::comprobarEntero($_REQUEST['numericoOpcional']); // Numérico opcional
 
-		//Float
-		'floatObligatorio' => validacionFormularios::comprobarFloat($_REQUEST['floatObligatorio'], PHP_INT_MAX, -PHP_INT_MAX, 1), // Float obligatorio
-		'floatOpcional' => validacionFormularios::comprobarFloat($_REQUEST['floatOpcional']), // Float opcional
+	// Validaciones para campos float
+	$aErrores['floatObligatorio'] = validacionFormularios::comprobarFloat($_REQUEST['floatObligatorio'], PHP_INT_MAX, -PHP_INT_MAX, 1); // Float obligatorio
+	$aErrores['floatOpcional'] = validacionFormularios::comprobarFloat($_REQUEST['floatOpcional']); // Float opcional
 
-		//Email
-		'emailObligatorio' => validacionFormularios::validarEmail($_REQUEST['emailObligatorio'], 1), // Email obligatorio
-		'emailOpcional' => validacionFormularios::validarEmail($_REQUEST['emailOpcional']), // Email opcional
+	// Validaciones para campos de correo electrónico
+	$aErrores['emailObligatorio'] = validacionFormularios::validarEmail($_REQUEST['emailObligatorio'], 1); // Email obligatorio
+	$aErrores['emailOpcional'] = validacionFormularios::validarEmail($_REQUEST['emailOpcional']); // Email opcional
 
-		//Contraseña
-		'contrasenaObligatoria' => validacionFormularios::validarPassword($_REQUEST['contrasenaObligatoria']), // Contraseña obligatoria
-		'contrasenaOpcional' => validacionFormularios::validarPassword($_REQUEST['contrasenaOpcional'], 16, 2, 3, 0), // Contraseña opcional
+	// Validaciones para campos de contraseña
+	$aErrores['contrasenaObligatoria'] = validacionFormularios::validarPassword($_REQUEST['contrasenaObligatoria']); // Contraseña obligatoria
+	$aErrores['contrasenaOpcional'] = validacionFormularios::validarPassword($_REQUEST['contrasenaOpcional'], 16, 2, 3, 0); // Contraseña opcional
 
-		//Fecha
-		'fechaObligatoria' => validacionFormularios::validarFecha($_REQUEST['fechaObligatoria'], $fechaFormateada, "01/01/1900", 1), // Fecha obligatoria
-		'fechaOpcional' => validacionFormularios::validarFecha($_REQUEST['fechaOpcional'], $fechaFormateada), // Fecha opcional
+	// Validaciones para campos de fecha
+	$aErrores['fechaObligatoria'] = validacionFormularios::validarFecha($_REQUEST['fechaObligatoria'], $fechaFormateada, "01/01/1900", 1); // Fecha obligatoria
+	$aErrores['fechaOpcional'] = validacionFormularios::validarFecha($_REQUEST['fechaOpcional'], $fechaFormateada); // Fecha opcional
 
-		//Telefono
-		'telefonoObligatorio' => validacionFormularios::validarTelefono($_REQUEST['telefonoObligatorio'], 1), // Teléfono obligatorio
-		'telefonoOpcional' => validacionFormularios::validarTelefono($_REQUEST['telefonoOpcional']), // Teléfono opcional
+	// Validaciones para campos de teléfono
+	$aErrores['telefonoObligatorio'] = validacionFormularios::validarTelefono($_REQUEST['telefonoObligatorio'], 1); // Teléfono obligatorio
+	$aErrores['telefonoOpcional'] = validacionFormularios::validarTelefono($_REQUEST['telefonoOpcional']); // Teléfono opcional
 
-		//Dni
-		'dniObligatorio' => validacionFormularios::validarDni($_REQUEST['dniObligatorio'], 1), // DNI obligatorio
-		'dniOpcional' => validacionFormularios::validarDni($_REQUEST['dniOpcional']), // DNI opcional
+	// Validaciones para campos de DNI
+	$aErrores['dniObligatorio'] = validacionFormularios::validarDni($_REQUEST['dniObligatorio'], 1); // DNI obligatorio
+	$aErrores['dniOpcional'] = validacionFormularios::validarDni($_REQUEST['dniOpcional']); // DNI opcional
 
-		//Codigo postal
-		'codigoPostalObligatorio' => validacionFormularios::validarCp($_REQUEST['codigoPostalObligatorio'], 1), // Código Postal obligatorio
-		'codigoPostalOpcional' => validacionFormularios::validarCp($_REQUEST['codigoPostalOpcional']), // Código Postal opcional
+	// Validaciones para campos de código postal
+	$aErrores['codigoPostalObligatorio'] = validacionFormularios::validarCp($_REQUEST['codigoPostalObligatorio'], 1); // Código Postal obligatorio
+	$aErrores['codigoPostalOpcional'] = validacionFormularios::validarCp($_REQUEST['codigoPostalOpcional']); // Código Postal opcional
 
-		//URL
-		'urlObligatorio' => validacionFormularios::validarURL($_REQUEST['urlObligatorio'], 1), //Url obligatorio
-		'urlOpcional' => validacionFormularios::validarURL($_REQUEST['urlOpcional'], 0), //Url opcional
+	// Validaciones para campos de URL
+	$aErrores['urlObligatorio'] = validacionFormularios::validarURL($_REQUEST['urlObligatorio'], 1); // Url obligatorio
+	$aErrores['urlOpcional'] = validacionFormularios::validarURL($_REQUEST['urlOpcional'], 0); // Url opcional
 
-		//RANGO
-		'rangoObligatorio' => validacionFormularios::comprobarEntero($_REQUEST['rangoObligatorio'], 50, 0, 1), //rangoObligatorio
-		'rangoOpcional' => validacionFormularios::comprobarEntero($_REQUEST['rangoOpcional'], 50, 0, 0), //RangoOpcional
+	// Validaciones para campos de rango
+	$aErrores['rangoObligatorio'] = validacionFormularios::comprobarEntero($_REQUEST['rangoObligatorio'], 50, 0, 1); // Rango obligatorio
+	$aErrores['rangoOpcional'] = validacionFormularios::comprobarEntero($_REQUEST['rangoOpcional'], 50, 0, 0); // Rango opcional
 
-		//COLOR      
-		'color' => validacionFormularios::comprobarNoVacio($_REQUEST['color']), //color
+	// Validaciones para campos de color
+	$aErrores['color'] = validacionFormularios::comprobarNoVacio($_REQUEST['color']); // Color
 
-		//BUSQUEDA
-		'busqueda' => validacionFormularios::comprobarAlfaNumerico($_REQUEST['busqueda'], 50, 1, 0), //busqueda
+	// Validaciones para campos de búsqueda
+	$aErrores['busqueda'] = validacionFormularios::comprobarAlfaNumerico($_REQUEST['busqueda'], 50, 1, 0); // Búsqueda
 
-		//LISTA
-		'listaDesplegable' => validacionFormularios::validarElementoEnLista($_REQUEST['listaDesplegable'], $aOpcionesListaDesplegable), //ListaDesplegable
+	// Validaciones para campos de lista desplegable
+	$aErrores['listaDesplegable'] = validacionFormularios::validarElementoEnLista($_REQUEST['listaDesplegable'], $aOpcionesListaDesplegable); // Lista desplegable
 
-		//FICHERO
-		'fichero'  => validacionFormularios::comprobarAlfaNumerico($_REQUEST['fichero'], 50, 0, 0)
-	];
+	// Validaciones para campos de archivo
+	$aErrores['fichero'] = validacionFormularios::comprobarAlfaNumerico($_REQUEST['fichero'], 50, 0, 0); // Fichero
 
 	//Recorremos el array de errores mediante un foreach
 	foreach ($aErrores as $campo => $error) {
@@ -267,69 +265,70 @@ if (isset($_REQUEST['enviar'])) {
 if ($entradaOK) {
 
 	//Almacenamos el valor en el array
-	$aRespuestas = [
-		//Alfabetico
-		'alfabeticoObligatorio' => $_REQUEST['alfabeticoObligatorio'],
-		'alfabeticoOpcional' => $_REQUEST['alfabeticoOpcional'],
+	// Respuestas para campos alfabéticos
+	$aRespuestas['alfabeticoObligatorio'] = $_REQUEST['alfabeticoObligatorio'];
+	$aRespuestas['alfabeticoOpcional'] = $_REQUEST['alfabeticoOpcional'];
 
-		//Alfanumerico
-		'alfanumericoObligatorio' => $_REQUEST['alfanumericoObligatorio'],
-		'alfanumericoOpcional' => $_REQUEST['alfanumericoOpcional'],
+	// Respuestas para campos alfanuméricos
+	$aRespuestas['alfanumericoObligatorio'] = $_REQUEST['alfanumericoObligatorio'];
+	$aRespuestas['alfanumericoOpcional'] = $_REQUEST['alfanumericoOpcional'];
 
-		//Numerico
-		'numericoObligatorio' => $_REQUEST['numericoObligatorio'],
-		'numericoOpcional' => $_REQUEST['numericoOpcional'],
+	// Respuestas para campos numéricos
+	$aRespuestas['numericoObligatorio'] = $_REQUEST['numericoObligatorio'];
+	$aRespuestas['numericoOpcional'] = $_REQUEST['numericoOpcional'];
 
-		//Float
-		'floatObligatorio' => $_REQUEST['floatObligatorio'],
-		'floatOpcional' => $_REQUEST['floatOpcional'],
+	// Respuestas para campos float
+	$aRespuestas['floatObligatorio'] = $_REQUEST['floatObligatorio'];
+	$aRespuestas['floatOpcional'] = $_REQUEST['floatOpcional'];
 
-		//Email
-		'emailObligatorio' => $_REQUEST['emailObligatorio'],
-		'emailOpcional' => $_REQUEST['emailOpcional'],
+	// Respuestas para campos de correo electrónico
+	$aRespuestas['emailObligatorio'] = $_REQUEST['emailObligatorio'];
+	$aRespuestas['emailOpcional'] = $_REQUEST['emailOpcional'];
 
-		//Contraseña
-		'contrasenaObligatoria' => $_REQUEST['contrasenaObligatoria'],
-		'contrasenaOpcional' => $_REQUEST['contrasenaOpcional'],
+	// Respuestas para campos de contraseña
+	$aRespuestas['contrasenaObligatoria'] = $_REQUEST['contrasenaObligatoria'];
+	$aRespuestas['contrasenaOpcional'] = $_REQUEST['contrasenaOpcional'];
 
-		//Fecha
-		'fechaObligatoria' => $_REQUEST['fechaObligatoria'],
-		'fechaOpcional' => $_REQUEST['fechaOpcional'],
+	// Respuestas para campos de fecha
+	$aRespuestas['fechaObligatoria'] = $_REQUEST['fechaObligatoria'];
+	$aRespuestas['fechaOpcional'] = $_REQUEST['fechaOpcional'];
 
-		//Telefono
-		'telefonoObligatorio' => $_REQUEST['telefonoObligatorio'],
-		'telefonoOpcional' => $_REQUEST['telefonoOpcional'],
+	// Respuestas para campos de teléfono
+	$aRespuestas['telefonoObligatorio'] = $_REQUEST['telefonoObligatorio'];
+	$aRespuestas['telefonoOpcional'] = $_REQUEST['telefonoOpcional'];
 
-		//Dni
-		'dniObligatorio' => $_REQUEST['dniObligatorio'],
-		'dniOpcional' => $_REQUEST['dniOpcional'],
+	// Respuestas para campos de DNI
+	$aRespuestas['dniObligatorio'] = $_REQUEST['dniObligatorio'];
+	$aRespuestas['dniOpcional'] = $_REQUEST['dniOpcional'];
 
-		//Codigo Postal
-		'codigoPostalObligatorio' => $_REQUEST['codigoPostalObligatorio'],
-		'codigoPostalOpcional' => $_REQUEST['codigoPostalOpcional'],
+	// Respuestas para campos de código postal
+	$aRespuestas['codigoPostalObligatorio'] = $_REQUEST['codigoPostalObligatorio'];
+	$aRespuestas['codigoPostalOpcional'] = $_REQUEST['codigoPostalOpcional'];
 
-		//URL
-		'urlObligatorio' => $_REQUEST['urlObligatorio'],
-		'urlOpcional' => $_REQUEST['urlOpcional'],
+	// Respuestas para campos de URL
+	$aRespuestas['urlObligatorio'] = $_REQUEST['urlObligatorio'];
+	$aRespuestas['urlOpcional'] = $_REQUEST['urlOpcional'];
 
-		//RANGO
-		'rangoObligatorio' => $_REQUEST['rangoObligatorio'],
-		'rangoOpcional' => $_REQUEST['rangoOpcional'],
+	// Respuestas para campos de rango
+	$aRespuestas['rangoObligatorio'] = $_REQUEST['rangoObligatorio'];
+	$aRespuestas['rangoOpcional'] = $_REQUEST['rangoOpcional'];
 
-		//COLOR
-		'color' => $_REQUEST['color'],
+	// Respuestas para campos de color
+	$aRespuestas['color'] = $_REQUEST['color'];
 
-		//LISTA
-		'listaDesplegable' => $_REQUEST['listaDesplegable'],
+	// Respuestas para campos de búsqueda
+	$aRespuestas['busqueda'] = $_REQUEST['busqueda'];
 
-		//FICHERO
-		/**
-		 * @link https://php.net/manual/en/function.basename.php
-		 * 
-		 * Mediante la funcion basename podremos sacar le nombre de un fichero
-		 */
-		'fichero' =>  basename($_REQUEST['fichero'])
-	];
+	// Respuestas para campos de lista desplegable
+	$aRespuestas['listaDesplegable'] = $_REQUEST['listaDesplegable'];
+
+	// Respuestas para campos de archivo
+	/**
+	 * @link https://php.net/manual/en/function.basename.php
+	 * 
+	 * Utilizando la función basename para obtener el nombre de un fichero
+	 */
+	$aRespuestas['fichero'] =  basename($_REQUEST['fichero']);
 
 	echo "<table class='table-light table-bordered' style='width: 30%;'><thead><tr style='text-align: center'><th>CAMPO</th><th>RESPUESTA</th<thead><tbody>";
 
