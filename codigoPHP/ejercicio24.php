@@ -42,6 +42,7 @@
 
 			//Inicializacion de variables
 			$entradaOK = true; //Indica si todas las respuestas son correctas
+
 			$aRespuestas = [
 				'nombre' => '',
 				'edad' => '',
@@ -56,11 +57,10 @@
 			//Comprobamos si se ha enviado el formulario
 			if (isset($_REQUEST['enviar'])) {
 				//Introducimos valores en el array $aErrores si ocurre un error
-				$aErrores = [
-					'nombre' => validacionFormularios::comprobarAlfabetico($_REQUEST['nombre'], 50, 3, 1),
-					'edad' => validacionFormularios::comprobarEntero($_REQUEST['edad'], 100, 1, 0),
-					'password' => validacionFormularios::validarPassword($_REQUEST['password'], 10, 2, 2, 0)
-				];
+				$aErrores['nombre'] = validacionFormularios::comprobarAlfabetico($_REQUEST['nombre'], 50, 3, 1);
+				$aErrores['edad'] = validacionFormularios::comprobarEntero($_REQUEST['edad'], 100, 1, 0);
+				$aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], 10, 2, 2, 0);
+
 
 				//Recorremos el array de errores
 				foreach ($aErrores as $campo => $error) {
@@ -95,7 +95,7 @@
 						<input type="text" style="background-color: #fcfbc2;" id="nombre" style="background-color: #D2D2D2" name="nombre" value="<?php echo (isset($_REQUEST['nombre']) ? $_REQUEST['nombre'] : ''); ?>">
 						<?php echo ($aErrores['nombre'] != null ? "<span style='color:red; padding: 0; margin: 0;'>" . $aErrores['nombre'] . "</span>" : ''); ?>
 						<br><br>
-				
+
 						<label for="edad" style="margin-top: 5px;">Edad: </label>
 						<input type="text" id="edad" name="edad" value="<?php echo (isset($_REQUEST['edad']) ? $_REQUEST['edad'] : ''); ?>">
 						<?php echo ($aErrores['edad'] != null ? "<span style='color:red'>" . $aErrores['edad'] . "</span>" : null); ?>

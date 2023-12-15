@@ -35,7 +35,7 @@
 			 */
 
 			//Inicializar el array del teatro
-			$aTeatro = [[]];
+			$aTeatro;
 
 
 			//Rellenamos 5 asientos del teatro
